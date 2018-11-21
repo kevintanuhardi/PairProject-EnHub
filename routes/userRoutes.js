@@ -51,5 +51,41 @@ routes.post("/signin", (req,res) =>{
     })
 })
 
+routes.get("/:TalentId/hire", (req,res) =>{
+    if(req.session.user === undefined){
+        let message = "You have to sign in first"
+        res.redirect(`/talents?msg=${message}`)
+    }
+
+    Model.Talent.findByPk(req.params.TalentId)
+    .then((data) =>{
+        // res.send(data)
+        let input ={
+            data: data
+        }
+        res.render("./pages/talents/detail", input)
+    })
+    .catch((err) => res.send(err))
+
+    
+})
+
+routes.post("/:TalentId/hire", (req,res) =>{
+    Model.Transaction.create({
+        UserId: req.session.user.id,
+        TalentId: req.params.TalentId
+    })
+    .then((data) =>{
+        let message = "You successfully hired this person";
+
+        res.redirect(`/talents?msg=${message}`)
+    })
+    .catch((err) =>{
+        let message = "There is some error";
+        
+        res.redirect(`/talents?msg=${message}`)
+    })
+})
+
 
 module.exports = routes;
