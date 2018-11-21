@@ -7,6 +7,7 @@ routes.get("/", (req,res) =>{
     .then((data) =>{
         let newData = data.map((element) =>{
             let result = {
+                id: element.id,
                 name: element.name,
                 email: element.email,
                 handphone: element.handphone,
@@ -22,7 +23,7 @@ routes.get("/", (req,res) =>{
 
         let input = {
             data: newData,
-            msg: req.params.msg
+            msg: req.query.msg
         }
 
         res.render("pages/talents/list.ejs", input)
