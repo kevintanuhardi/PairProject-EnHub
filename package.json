@@ -1,0 +1,27 @@
+{
+  "name": "PairProject-EnHub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevintanuhardi/PairProject-EnHub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevintanuhardi/PairProject-EnHub/issues"
+  },
+  "homepage": "https://github.com/kevintanuhardi/PairProject-EnHub#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.6.1",
+    "sequelize": "^4.41.2"
+  }
+}
