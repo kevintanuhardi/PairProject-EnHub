@@ -1,0 +1,6 @@
+100 
+ p = 10
+
+ 1 = 0 - 9      SELECT * FROM talents LIMIT 0, 10
+ 2 = 10 - 19    SELECT * FROM talents LIMIT 10, 10
+ 3 = 20 - 29    ----  - -             LIMIT 20, 10
