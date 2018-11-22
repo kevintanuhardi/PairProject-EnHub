@@ -7,6 +7,13 @@
     </div>
 <% } %>
 
-
+<%if (session.user) { %>
+    <%if (session.user.role === "talent") { %>
+        <form action="/talents/addPhoto" method="post" enctype="multipart/form-data">
+            <input type="file" name="portofolio" />
+            <input type="submit" class="btn btn-primary" value="submit"/ >
+          </form>
+    <% } %>
+<% } %>
 </body>
 </html>

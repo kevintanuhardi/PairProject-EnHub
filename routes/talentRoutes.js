@@ -2,6 +2,9 @@ const routes = require('express').Router();
 const Model = require("../models")
 const helpers = require("../helpers/index")
 
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
 
 routes.get("/", (req,res) =>{
     let startInd = 0
@@ -119,6 +122,25 @@ routes.get("/transactions", (req,res) =>{
         res.render("./pages/talents/transactions", input)
     })
     //   res.send({ id: req.session.user.id})
+})
+
+routes.post("/addPhoto", upload.single("portofolio"), function(req,res,next){
+    Model.Talent.update({
+        photoFile: req.file.filename
+    }, 
+    {where: {
+            id: req.session.user.id
+        }
+    })
+    .then(() =>{
+        // console.log(req.file, req.session)
+        let message = "you successfully uploaded a photo"
+        res.redirect(`/?msg=${message}`)
+    })
+    .catch(() =>{
+        res.redirect(`/?msg=${err}`)
+    })
+
 })
 
 

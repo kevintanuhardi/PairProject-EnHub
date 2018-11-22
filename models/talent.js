@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     skills: DataTypes.STRING,
     status: DataTypes.STRING,
     price: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER
+    rating: DataTypes.INTEGER,
+    photoFile: DataTypes.STRING
   }, {});
   Talent.associate = function(models) {
     // associations can be defined here
