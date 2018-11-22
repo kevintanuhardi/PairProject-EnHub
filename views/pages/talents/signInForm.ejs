@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>  Sign In </h1>
-    <h2> Welcome Entrepreneur</h2>
+    <h2> Welcome Talents</h2>
     <%if (msg) { %>
         <div class="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
@@ -10,7 +10,7 @@
         </div>
     <% } %>
     
-    <form action="/users/signin" method="POST">
+    <form action="/talents/signin" method="POST">
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">

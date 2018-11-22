@@ -39,6 +39,11 @@
             <% } %>
         </tbody>
     </table>    
+    <ul class="pagination">
+            <% for(let i = 1; i <= Math.ceil(totalData / 5); i++ ){ %>
+                <li><a href="/talents?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+      </ul>
 </div>
 
 

@@ -1,0 +1,7 @@
+untuk promise yang data nya di dalam bisa define variable secara global
+
+hasil promise tidak boleh namanya data(harus lebih spesifik)
+
+
+
+validatsi bisa { args : argumennya, msg: "custom message"}

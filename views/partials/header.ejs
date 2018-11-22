@@ -37,15 +37,24 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Enhub</a>
+            <a class="navbar-brand" href="#">Factory Robot</a>
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/talents">Talent</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <% if (session.user !== undefined) { %>
+                <% if (session.user.role === "user") { %>
+                    <li><a href="/users/transactions"><span class="glyphicon glyphicon-user"></span> User's Transaction</a></li>
+                <% } else{%>
+                    <li><a href="/talents/transactions"><span class="glyphicon glyphicon-user"></span> Talent's Transaction</a></li>
+                <% } %>
+                <li><a href="/logOut"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                <% } else {%>
+                    <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                     <li><a href="/signIn"><span class="glyphicon glyphicon-book"></span> Login</a></li>
+                <% } %>
           </ul>
         </div>
       </nav>
