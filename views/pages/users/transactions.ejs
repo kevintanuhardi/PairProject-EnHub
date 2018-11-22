@@ -24,7 +24,7 @@
                         <td><%-data[i].id%></td>
                         <td><%-data[i].TalentId%></td>
                         <td><%-data[i].Talent.name%></td>
-                        <% if(data[i].Talent.rating === null){ %>
+                        <% if(data[i].Rating === null){ %>
                             <td>
                                 <form class="form-inline" action="/users/transactions/<%-data[i].id%>" method="POST">
                                         <input type="text" class="form-control" id="rating" placeholder="Enter rating" name="rating">
@@ -33,7 +33,7 @@
 
                             </td>
                         <% } else {%>
-                            <td><%-data[i].Talent.rating%></td>
+                            <td><%-data[i].Rating%></td>
                         <% } %>
                     </tr>
     
