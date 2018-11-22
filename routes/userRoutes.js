@@ -3,7 +3,7 @@ const Model = require("../models");
 const helpers = require("../helpers/index")
 
 routes.get("/signup", (req,res) =>{
-    res.render("./pages/users/signUpForm")
+    res.render("./pages/users/signUpForm", {msg: req.query.msg})
 })
 
 routes.post("/signup",(req,res) =>{
@@ -15,7 +15,8 @@ routes.post("/signup",(req,res) =>{
         company_name: req.body.company_name
     })
     .then((data) =>{
-        res.redirect("/")
+        let message = "You successfully registered"
+        res.redirect(`/?msg=${message}`)
     })
     .catch((err) =>
         res.send(err))
@@ -86,6 +87,57 @@ routes.post("/:TalentId/hire", (req,res) =>{
         res.redirect(`/talents?msg=${message}`)
     })
 })
+
+routes.get("/transactions", (req,res) =>{
+
+
+    Model.Transaction.findAll({
+        where:{
+            UserId: req.session.user.id
+        },
+        include:[{
+            model : Model.Talent
+        }]
+    })
+    .then((data) =>{
+        // res.send(data)
+        let input = {
+            data: data,
+            msg: req.query.msg
+        }
+        res.render("./pages/users/transactions", input)
+    })
+    //   res.send({ id: req.session.user.id})
+})
+
+routes.post("/transactions/:transactionId", (req,res) =>{
+    // res.send(req.body)
+    Model.Transaction.update({
+        Rating: req.body.rating
+    },{
+        where:{
+            id: req.params.transactionId
+        }
+    })
+    .then(()=>{
+        let message = "You successfully rate this talent"
+        res.redirect(`/users/transactions?msg=${message}`)
+    })
+    .catch((err) =>{
+        res.redirect(`/transactions?msg=${err}`)
+    })
+})
+
+routes.get("/logout", (req,res) =>{
+    req.session.destroy(function(err) {
+        res.send(err)
+    })
+
+    message = "You successfully logged out"
+
+    res.redirect(`/?msg=${message}`)
+})
+
 
 
 module.exports = routes;

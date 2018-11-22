@@ -13,6 +13,15 @@ app.use(session({
     cookie: { secure: false }
 }))
 
+app.use(function(req, res, next){
+    // console.log(req.session)
+    res.locals.session = req.session;
+
+    // console.log(" sessions ===> ",res.locals.session)
+    //res.locals.authenticated = ! req.user.anonymous;
+    next();
+  });
+
 app.use(express.urlencoded({extended: false}));
 app.use("/", routes);
 

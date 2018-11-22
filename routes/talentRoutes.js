@@ -3,7 +3,13 @@ const Model = require("../models")
 
 
 routes.get("/", (req,res) =>{
-    Model.Talent.findAll()
+    let startInd = 0
+    if(req.query.page){
+        startInd = (req.query.page-1) *5
+    }
+    Model.Talent.findAll(
+        {offset: startInd, limit: 5}
+        )
     .then((data) =>{
         let newData = data.map((element) =>{
             let result = {
@@ -20,14 +26,22 @@ routes.get("/", (req,res) =>{
 
             return result
         })
-
         let input = {
             data: newData,
             msg: req.query.msg
         }
 
-        res.render("pages/talents/list.ejs", input)
+        Model.Talent.findAll()
+        .then((data) =>{
+            input.totalData = data.length
+
+            // res.send(input)
+            res.render("pages/talents/list.ejs", input)
+        })
+
+
     })
+    .catch(err => res.send(err))
 })
 
 
