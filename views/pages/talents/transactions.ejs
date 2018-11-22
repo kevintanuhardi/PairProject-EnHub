@@ -1,0 +1,36 @@
+<%- include ../../partials/header.ejs %>
+
+<div class="container container-fluid">
+    <h1>My Transactions</h1>
+    <%if (msg) { %>
+    <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <%- msg %>
+    </div>
+    <% } %>
+
+    <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>  
+                    <th scope="col">User Id</th> 
+                    <th scope="col">User Name</th> 
+                    <th scope="col">Date hired</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < data.length; i++){ %>
+                    <tr>
+                        <td><%-data[i].id%></td>
+                        <td><%-data[i].UserId%></td>
+                        <td><%-data[i].User.name%></td>
+                        <td><%-data[i].createdAt%></td>
+                    </tr>
+    
+                <% } %>
+            </tbody>
+        </table>  
+
+</div>
+</body>
+</html>

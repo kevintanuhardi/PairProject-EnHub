@@ -128,15 +128,7 @@ routes.post("/transactions/:transactionId", (req,res) =>{
     })
 })
 
-routes.get("/logout", (req,res) =>{
-    req.session.destroy(function(err) {
-        res.send(err)
-    })
 
-    message = "You successfully logged out"
-
-    res.redirect(`/?msg=${message}`)
-})
 
 
 

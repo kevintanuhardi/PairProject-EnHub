@@ -1,0 +1,46 @@
+<%- include ../../partials/header.ejs %>
+
+<div class="container">
+    <h1>  Sign Up </h1>
+    <h2>Market your skills</h2>
+    
+      <form action="/talents/signup" method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="handphone">Handphone:</label>
+            <input type="handphone" class="form-control" id="handphone" placeholder="Enter Company Name" name="handphone">
+          </div>
+        <div class="form-group">
+            <label for="social_media">Social Media:</label>
+            <input type="social_media" class="form-control" id="social_media" placeholder="Enter social_media" name="social_media">
+          </div>
+        <div class="form-group">
+            <label for="skills">Skills:</label>
+            <input type="skills" class="form-control" id="skills" placeholder="Enter skills" name="skills">
+          </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="status" class="form-control" id="status" placeholder="Enter status" name="status">
+          </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter price" name="price">
+          </div>
+        <input type="submit" class="btn btn-default" value="Sign Up">
+      </form>
+
+</div>
+
+</body>
+</html>
