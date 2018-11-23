@@ -40,7 +40,7 @@ Movie.prototype.updateRating = function(){
 hooks transaction talent
 
 
-helper sequelize.modes.movie.findbyPk(review.movieId)
+helper sequelize.models.movie.findbyPk(review.movieId)
 .then((movie) =>{
     return movie.updateRating()
 })
