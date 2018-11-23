@@ -61,7 +61,7 @@ routes.post("/signin", (req,res) =>{
                 name: data.name,
                 role: "user"
             }
-            console.log(req.session)
+            // console.log(req.session)
             res.redirect(`/users/signin?msg=${message}`)
         }
         else{
@@ -75,7 +75,7 @@ routes.post("/signin", (req,res) =>{
     })
 })
 
-routes.get("/:TalentId/hire", (req,res) =>{
+routes.get("/:TalentId/hire", function(req,res,next){
     if(req.session.user === undefined){
         let message = "You have to sign in first"
         res.redirect(`/talents?msg=${message}`)
@@ -84,6 +84,10 @@ routes.get("/:TalentId/hire", (req,res) =>{
         let message = "You have to sign in as Business owner to hire"
         res.redirect(`/talents?msg=${message}`)
     }
+    next()
+}
+    ,function(req,res){
+
 
     Model.Talent.findByPk(req.params.TalentId)
     .then((data) =>{
@@ -116,12 +120,11 @@ routes.post("/:TalentId/hire", (req,res) =>{
             subject: 'New Project on EnHub',
             text: 'Visit your page on Enhub for more detail',
         };
-        console.log(email)
 
-        transporter.sendMail(email, function(err, info) {
-            console.log("masuk")
+        // transporter.sendMail(email, function(err, info) {
+        //     console.log("masuk")
             res.redirect(`/talents?msg=${message}`)
-        })
+        // })
 
     })
     .catch((err) =>{

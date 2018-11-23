@@ -1,0 +1,49 @@
+after save(review,option){
+    return updateRating(sequelize,review,options)
+}
+
+
+after destroy()
+
+
+
+instance method
+
+Movie.prototype.updateRating = function(){
+    let sum ranting 0
+    let selft =this
+
+    return sequelize.models.review.aggregate(rating, sum ,where:{ movieId: id})
+    .then((sumtotal) =>{
+        sumrating
+        return sequelize.models.review.count({
+            where:{
+                movieId: this.id
+            },
+            col: "rating"
+        })
+    })
+    .then((totalRating) =>{
+        if(totalRating > 0){
+            this.rating = Math.round(sumrating/ totalRating)
+        }
+        else{
+            this.rating = 0
+        }
+        return this.save()
+    })
+    .catch((err) =>{
+        throw new Error(err)
+    })
+}
+
+hooks transaction talent
+
+
+helper sequelize.models.movie.findbyPk(review.movieId)
+.then((movie) =>{
+    return movie.updateRating()
+})
+.catch((err) =>{
+    throw new Error(err)
+})

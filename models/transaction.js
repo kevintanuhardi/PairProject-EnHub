@@ -1,5 +1,7 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
+  const helpers = require("../helpers")
   const Transaction = sequelize.define('Transaction', {
     id:{
       type:DataTypes.INTEGER,
@@ -15,5 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     Transaction.belongsTo(models.Talent)
     Transaction.belongsTo(models.User)
   };
+
+  Transaction.afterSave((transaction,option) =>{
+    // console.log("========", transaction)
+    return helpers.updateRating(sequelize, transaction, option)
+  })
   return Transaction;
 };
